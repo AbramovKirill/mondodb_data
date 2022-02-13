@@ -3,7 +3,7 @@ from itertools import count
 import datetime
 
 client = pymongo.MongoClient("mongodb+srv://12345:12345@cluster0.htukn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.uprav_comp
+db = client.applications
 coll2 = db.houses
 
 
@@ -30,9 +30,11 @@ def insert_one():
 	coll2.insert_one({"_id": 1, "text": "лампочка пропала", "status": True, "time": datetime.datetime.now()})
 
 def output_all():
+	arr = []
 	for value in coll2.find():
+		arr.append(value)
 		print(value)
-		print("отработало")	
+	return arr
 	
 def output_3():
 	for value in coll2.find().limit(3):
